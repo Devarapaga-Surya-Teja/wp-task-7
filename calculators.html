@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive HTML Calculator</title>
+    <style>
+        :root {
+            --primary-color: black;
+            --secondary-color: white;
+            --hover-filter: grayscale(100%);
+            --button-radius: 8px;
+            --transition-speed: 0.3s;
+            --border-color: #333;
+            --button-hover-color: #333;
+            --background-color: #f4f4f4;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--background-color);
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-image: URL("back.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1 {
+            color: black;
+            position: sticky;
+            top: 0;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+                    }
+
+        .calculator {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 350px;
+            width: 90%;
+            margin: 50px auto;
+            background: var(--secondary-color);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            border: 2px solid var(--border-color);
+        }
+
+        input[type="text"] {
+            grid-column: span 4;
+            padding: 15px;
+            font-size: 24px;
+            text-align: right;
+            border: 2px solid var(--border-color);
+            border-radius: var(--button-radius);
+            margin-bottom: 10px;
+            background-color: #f1f1f1;
+            color: #333;
+        }
+
+        input[type="button"] {
+            padding: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: 2px solid var(--border-color);
+            border-radius: var(--button-radius);
+            cursor: pointer;
+            transition: var(--transition-speed);
+        }
+
+        input[type="button"]:hover {
+            background-color: var(--button-hover-color);
+            filter: var(--hover-filter);
+            opacity: 0.8;
+        }
+
+        .equal {
+            grid-column: span 2;
+        }
+
+        .clear {
+            background: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <div class="calculator">
+        <input type="text" id="result" disabled>
+        <input type="button" value="(" onclick="appendValue('(')">
+        <input type="button" value=")" onclick="appendValue(')')">
+        <input type="button" value="%" onclick="appendValue('%')">
+        <input type="button" value="C" class="clear" onclick="clearResult()">
+        <input type="button" value="1" onclick="appendValue('1')">
+        <input type="button" value="2" onclick="appendValue('2')">
+        <input type="button" value="3" onclick="appendValue('3')">
+        <input type="button" value="/" onclick="appendValue('/')">
+        <input type="button" value="4" onclick="appendValue('4')">
+        <input type="button" value="5" onclick="appendValue('5')">
+        <input type="button" value="6" onclick="appendValue('6')">
+        <input type="button" value="*" onclick="appendValue('*')">
+        <input type="button" value="7" onclick="appendValue('7')">
+        <input type="button" value="8" onclick="appendValue('8')">
+        <input type="button" value="9" onclick="appendValue('9')">
+        <input type="button" value="-" onclick="appendValue('-')">
+        <input type="button" value="0" onclick="appendValue('0')">
+        <input type="button" value="." onclick="appendValue('.')">
+        <input type="button" value="=" class="equal" onclick="calculateResult()">
+        <input type="button" value="+" onclick="appendValue('+')">
+    </div>
+
+    <script>
+        function appendValue(value) {
+            document.getElementById('result').value += value;
+        }
+
+        function clearResult() {
+            document.getElementById('result').value = '';
+        }
+
+        function calculateResult() {
+            try {
+                document.getElementById('result').value = eval(document.getElementById('result').value);
+            } catch (e) {
+                alert('Invalid Expression');
+            }
+         
+        }
+    </script>
+ <img src="back.jpg" alt="Sample Image 2">
+
+</body>
+</html>
